@@ -1,0 +1,220 @@
+// OMG.cpp : 定义 DLL 应用程序的导出函数。
+//
+
+#include "stdafx.h"
+#include "OMG.h"
+
+
+// 这是导出变量的一个示例
+OMG_API int nOMG=0;
+
+// 这是导出函数的一个示例。
+OMG_API int fnOMG(void)
+{
+	return 42;
+}
+OMG_API int Add(){
+	return 120;
+}
+// 这是已导出类的构造函数。
+// 有关类定义的信息，请参阅 OMG.h
+COMG::COMG()
+{
+	return;
+}
+
+//Start coding ... Come on !!!
+
+//BLEACH Type
+//Azrael ? Death ?
+
+OMG_API void rrun(SoursePlayer*p)
+{
+	if (p->isright())
+		p->prun(1);
+	else
+		p->pdirection();
+	p->prun(1);
+}
+OMG_API void lrun(SoursePlayer*p)
+{
+	if (p->isright()==0)
+		p->prun(1);
+	else
+		p->pdirection();
+	p->prun(1);
+}
+OMG_API void stop(SoursePlayer*p) { p->prun(0); }
+OMG_API double aabs(double a) { return a<0?-a:a ; }
+// X has the priority 
+OMG_API void runTo(SoursePlayer*p,double x,double y)
+{
+	//Eps for stop
+	double eps = 20;
+
+	if (p->getPosiX() < x - eps)
+		rrun(p);
+	else if (p->getPosiX() > x + eps ) 
+		lrun(p);
+	if (aabs(p->getPosiX() - x) < eps  && p->getPosiY() < y - eps)
+		p->pjump();
+
+	//Stop with inline normal attack 
+	if (aabs(p->getPosiX() - x) < eps  &&  aabs(p->getPosiY() - y) < eps)
+	{
+		stop(p);
+		p->pattack(3);
+	}
+}
+OMG_API bool ableToAtt(SoursePlayer*p, int pur, OtherPlayer*op1, OtherPlayer*op2, OtherPlayer*op3)
+{
+	OtherPlayer *aim= op1;
+	double eps = 50; 
+	//Locked purpose has the priority
+	switch (pur)
+	{
+		case 1:aim = op1;
+			break;
+		case 2:aim = op2;
+			break;
+		case 3:aim = op3;
+			break;
+	}
+	double x1 = p->getPosiX() , x2 = aim->getPointX();
+	double y1 = p->getPosiY() , y2 = aim->getPointY();
+	
+	if ( aabs (x1 - x2) <= eps && aabs (y1 - y2) <= 20 )
+		return true;
+
+	//Not the purpose
+	for (int po=1;po>=3;po++)
+	{
+		switch (po)
+		{
+			case 1:aim = op1;
+				break;
+			case 2:aim = op2;
+				break;
+			case 3:aim = op3;
+				break;
+		}
+		double x1 = p->getPosiX(), x2 = aim->getPointX();
+		double y1 = p->getPosiY(), y2 = aim->getPointY();
+
+		if (aabs(x1 - x2) <= eps && aabs(y1 - y2) <= 30)
+			return true;
+	}
+
+	return false;
+}
+//For special attack
+OMG_API bool ableS(SoursePlayer*p, int pur,int kind, OtherPlayer*op1, OtherPlayer*op2, OtherPlayer*op3)
+{
+	OtherPlayer *aim = op1;
+	// Range of special attack
+	//This is only for BLEACH ...
+	double a1 = 1280, a2 = 220,a3 = -1;
+	double eps = 120;
+	//Kind of Special Attack
+	switch (kind)
+	{
+		case 1:eps = a1;
+			break;
+		case 2:eps = a2;
+			break;
+	}
+
+	for (int po = 1; po >= 3; po++)
+	{
+		switch (po)
+		{
+			case 1:aim = op1;
+				break;
+			case 2:aim = op2;
+				break;
+			case 3:aim = op3;
+				break;
+		}
+		double x1 = p->getPosiX(), x2 = aim->getPointX();
+		double y1 = p->getPosiY(), y2 = aim->getPointY();
+
+		if (aabs(x1 - x2) <= eps && aabs(y1 - y2) <= 30)
+			return true;
+	}
+	return false;
+}
+
+//Unfinished ...
+OMG_API int locked(int pur)
+{
+	return  pur ;
+}
+
+
+OMG_API bool playrole(SoursePlayer*p, OtherPlayer*op1, OtherPlayer*op2, OtherPlayer*op3, int*box) {
+	//Range of map
+	double maxx = 1028, minx = 0;
+	double maxy = 660 , miny = 120;
+	double basmp = 58, topmp = 90;
+	double eps = 80;
+
+	int pur = 1,pur2 = 2; // Purpose
+	int lock = 0; // For last hint 
+
+	//Scan the players and attack 
+	//Last hint has the priority !!!
+	
+
+
+	//Move for attacking 
+	//Lock a purpose ?
+	if (lock == 0)
+	{
+		if (op1->getmp() < 75)
+		{
+			pur = 1;
+			runTo(p, op1->getPointX(), op1->getPointY());
+		}
+		else
+		{
+			pur = 2;
+			runTo(p, op2->getPointX(), op2->getPointY());
+		}
+	}
+
+	//Combo
+	//Combo has the priority
+
+	//Attack
+	if (p->getmp() < basmp + 11)
+	{
+		if (ableToAtt(p,pur,op1,op2,op3))
+			for (int i = 1; i < 4; i++)
+				p->pattack(i);
+	}
+	else
+	{
+		if (ableS(p, pur, 2, op1, op2, op3))
+			p->s2();
+		if (ableS(p, pur, 1, op1, op2, op3))
+			p->s1();
+	}
+
+	//Get the box
+
+	//Escape
+
+
+	return false;
+}
+OMG_API int selectplayer(SoursePlayer*p){
+
+	// 0 - 死神、1 - 刺客、2 - 拳手、3 - 猫女
+	//Player 0 - 死神
+
+	// MP s1 = 22,s2 = 15, s2 = 11;  
+
+	//Box [0..3] position : 
+	//(320,340),(960,340), (320,570),(960,570)
+	return 0;
+}

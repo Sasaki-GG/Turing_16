@@ -1,1 +1,103 @@
+// OMG.cpp : 定义 DLL 应用程序的导出函数。
+//
 
+#include "stdafx.h"
+#include "OMG.h"
+
+
+// 这是导出变量的一个示例
+OMG_API int nOMG=0;
+
+// 这是导出函数的一个示例。
+OMG_API int fnOMG(void)
+{
+	return 42;
+}
+OMG_API int Add(){
+	return 120;
+}
+// 这是已导出类的构造函数。
+// 有关类定义的信息，请参阅 OMG.h
+COMG::COMG()
+{
+	return;
+}
+
+
+
+OMG_API void rrun(SoursePlayer*p)
+{
+	if (p->isright())
+		p->prun(1);
+	else
+		p->pdirection();
+	p->prun(1);
+}
+OMG_API void lrun(SoursePlayer*p)
+{
+	if (p->isright()==0)
+		p->prun(1);
+	else
+		p->pdirection();
+	p->prun(1);
+}
+OMG_API void stop(SoursePlayer*p) { p->prun(0); }
+// X has the priority .
+OMG_API void runTo(SoursePlayer*p,double x,double y)
+{
+	if (p->getPosiX() < x)
+		rrun(p);
+	else
+		lrun(p);
+	if (p->getPosiY() < y)
+		p->pjump();
+}
+
+
+
+OMG_API bool playrole(SoursePlayer*p, OtherPlayer*op1, OtherPlayer*op2, OtherPlayer*op3, int*box) {
+	//Range of map
+	double maxx = 1028, minx = 0;
+	double maxy = 660 , miny = 10;
+	double basmp = 58, topmp = 90;
+	int pur = 1; // Purpos
+	double eps = 80; 
+	//Move for attacking 
+	if (op1->getmp() < 75)
+	{
+		pur = 1 ;
+		runTo(p, op1->getPointX(), op1->getPointY());
+	}
+	else
+	{
+		pur = 2;
+		runTo(p, op2->getPointX(), op2->getPointY());
+	}
+
+	//Attack
+	if (p->getmp() < basmp + 6)
+	{
+		for (int i = 1; i < 4; i++)
+			p->pattack(i);
+	}
+	else
+	{
+		if (p->isjump())
+			p->s3();
+		else
+		{
+			p->s1();
+			p->s2();
+		}
+	}
+
+
+	return false;
+}
+OMG_API int selectplayer(SoursePlayer*p){
+
+	// 0 - 死神、1 - 刺客、2 - 拳手、3 - 猫女
+	//player 2
+	// MP s1 = 13,s2 = 16, s2 = 6;  
+	return 2;
+}

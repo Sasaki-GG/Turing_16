@@ -1,14 +1,14 @@
-// OMG.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌĞòµÄµ¼³öº¯Êı¡£
+// OMG.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 //
 
 #include "stdafx.h"
 #include "OMG.h"
 #define N 3
 
-// ÕâÊÇµ¼³ö±äÁ¿µÄÒ»¸öÊ¾Àı
+// è¿™æ˜¯å¯¼å‡ºå˜é‡çš„ä¸€ä¸ªç¤ºä¾‹
 OMG_API int nOMG=0;
 
-// ÕâÊÇµ¼³öº¯ÊıµÄÒ»¸öÊ¾Àı¡£
+// è¿™æ˜¯å¯¼å‡ºå‡½æ•°çš„ä¸€ä¸ªç¤ºä¾‹ã€‚
 OMG_API int fnOMG(void)
 {
 	return 42;
@@ -16,8 +16,8 @@ OMG_API int fnOMG(void)
 OMG_API int Add(){
 	return 120;
 }
-// ÕâÊÇÒÑµ¼³öÀàµÄ¹¹Ôìº¯Êı¡£
-// ÓĞ¹ØÀà¶¨ÒåµÄĞÅÏ¢£¬Çë²ÎÔÄ OMG.h
+// è¿™æ˜¯å·²å¯¼å‡ºç±»çš„æ„é€ å‡½æ•°ã€‚
+// æœ‰å…³ç±»å®šä¹‰çš„ä¿¡æ¯ï¼Œè¯·å‚é˜… OMG.h
 COMG::COMG()
 {
 	return;
@@ -350,14 +350,15 @@ OMG_API bool playrole(SoursePlayer*p, OtherPlayer*op1, OtherPlayer*op2, OtherPla
 }
 OMG_API int selectplayer(SoursePlayer*p, TEAMNAME*tn) {
 
-	// 0 - ËÀÉñ¡¢1 - ´Ì¿Í¡¢2 - È­ÊÖ¡¢3 - Ã¨Å®
-	//Player 0 - ËÀÉñ
+	// 0 - æ­»ç¥ã€1 - åˆºå®¢ã€2 - æ‹³æ‰‹ã€3 - çŒ«å¥³
+	//Player 0 - æ­»ç¥
 
 	// MP s1 = 22,s2 = 15, s3 = 11;  
 
+	
 	//Box [0..3] position : 
 	//(320,340),(960,340), (320,570),(960,570)
-	tn->setname("ÎÒÒªÑ¡Àî°×");
+	tn->setname("æˆ‘è¦é€‰æç™½");
 	return 0;
 }
 

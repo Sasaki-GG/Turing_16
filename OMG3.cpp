@@ -1,20 +1,20 @@
-// OMG3.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌÐòµÄµ¼³öº¯Êý¡£
+// OMG3.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 //
 
 #include "stdafx.h"
 #include "OMG3.h"
 
-// ÕâÊÇµ¼³ö±äÁ¿µÄÒ»¸öÊ¾Àý
+// è¿™æ˜¯å¯¼å‡ºå˜é‡çš„ä¸€ä¸ªç¤ºä¾‹
 OMG3_API int nOMG3=0;
 
-// ÕâÊÇµ¼³öº¯ÊýµÄÒ»¸öÊ¾Àý¡£
+// è¿™æ˜¯å¯¼å‡ºå‡½æ•°çš„ä¸€ä¸ªç¤ºä¾‹ã€‚
 OMG3_API int fnOMG3(void)
 {
 	return 42;
 }
 
-// ÕâÊÇÒÑµ¼³öÀàµÄ¹¹Ôìº¯Êý¡£
-// ÓÐ¹ØÀà¶¨ÒåµÄÐÅÏ¢£¬Çë²ÎÔÄ OMG3.h
+// è¿™æ˜¯å·²å¯¼å‡ºç±»çš„æž„é€ å‡½æ•°ã€‚
+// æœ‰å…³ç±»å®šä¹‰çš„ä¿¡æ¯ï¼Œè¯·å‚é˜… OMG3.h
 COMG3::COMG3()
 {
 	return;
@@ -32,6 +32,7 @@ OMG3_API void rrun(SoursePlayer*p)
 }
 OMG3_API void lrun(SoursePlayer*p)
 {
+	
 	if (p->isright() == 0)
 		p->prun(1);
 	else
@@ -351,7 +352,7 @@ OMG3_API bool playrole3(SoursePlayer*p, OtherPlayer*op1, OtherPlayer*op2, OtherP
 }
 
 OMG3_API int selectplayer3(SoursePlayer*p, TEAMNAME*tn){
-	tn->setname("À²À²À²µÂÂêÎ÷ÑÇ");
+	tn->setname("å•¦å•¦å•¦å¾·çŽ›è¥¿äºš");
 	return 2;
 
 }

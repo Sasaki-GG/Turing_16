@@ -1,20 +1,21 @@
-// OMG2.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌĞòµÄµ¼³öº¯Êı¡£
+// OMG2.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 //
+
 
 #include "stdafx.h"
 #include "OMG2.h"
 
-// ÕâÊÇµ¼³ö±äÁ¿µÄÒ»¸öÊ¾Àı
+// è¿™æ˜¯å¯¼å‡ºå˜é‡çš„ä¸€ä¸ªç¤ºä¾‹
 OMG2_API int nOMG2=0;
 
-// ÕâÊÇµ¼³öº¯ÊıµÄÒ»¸öÊ¾Àı¡£
+// è¿™æ˜¯å¯¼å‡ºå‡½æ•°çš„ä¸€ä¸ªç¤ºä¾‹ã€‚
 OMG2_API int fnOMG2(void)
 {
 	return 42;
 }
 
-// ÕâÊÇÒÑµ¼³öÀàµÄ¹¹Ôìº¯Êı¡£
-// ÓĞ¹ØÀà¶¨ÒåµÄĞÅÏ¢£¬Çë²ÎÔÄ OMG2.h
+// è¿™æ˜¯å·²å¯¼å‡ºç±»çš„æ„é€ å‡½æ•°ã€‚
+// æœ‰å…³ç±»å®šä¹‰çš„ä¿¡æ¯ï¼Œè¯·å‚é˜… OMG2.h
 COMG2::COMG2()
 {
 	return;
@@ -339,7 +340,7 @@ OMG2_API bool playrole2(SoursePlayer*p, OtherPlayer*op1, OtherPlayer*op2, OtherP
 	return false;
 }
 OMG2_API int selectplayer2(SoursePlayer*p,TEAMNAME*tn){
-	tn->setname("¿ËËÕ¶÷µÄĞÅÍ½");
+	tn->setname("å…‹è‹æ©çš„ä¿¡å¾’");
 	return 1;
 
 }

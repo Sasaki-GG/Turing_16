@@ -34,6 +34,7 @@ OMG_API void rrun(SoursePlayer*p)
 		p->pdirection();
 	p->prun(1);
 }
+
 OMG_API void lrun(SoursePlayer*p)
 {
 	if (p->isright() == 0)
